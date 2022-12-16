@@ -8,6 +8,9 @@ const dateInput = document.querySelector("#target-date-input");
 let intervalId = 0;
 // const intervalIdArr = [];
 
+const dateSaveKey = "saved-date";
+const savedDate = localStorage.getItem(dateSaveKey);
+
 ///////////////////////////////////////////////////////////////////////////
 
 const initiator = (messageContainer, container) => {
@@ -17,14 +20,12 @@ const initiator = (messageContainer, container) => {
 
   container.style.display = "none"; // 화면에 보이지 않도록 함
 };
-initiator(messageContainer, container);
 
 const resetDateInputs = (yearInput, monthInput, dateInput) => {
   yearInput.textContent = "none";
   monthInput.textContent = "none";
   dateInput.textContent = "none";
 };
-resetDateInputs(yearInput, monthInput, dateInput);
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -43,6 +44,10 @@ const dateFormMaker = function () {
 };
 
 const counterMaker = function (dateFormat) {
+  if (dateFormat !== savedDate) {
+    localStorage.setItem(dateSaveKey, dateFormat); // key, value
+  }
+
   const nowDate = new Date();
   const targetDate = new Date(dateFormat).setHours(0, 0, 0, 0); // 자정을 기준으로 날짜 형식 정의
 
@@ -127,8 +132,12 @@ const counterMaker = function (dateFormat) {
 
 ///////////////////////////////////////////////////////////////////////////
 
-const starter = () => {
-  const dateFormat = dateFormMaker();
+const starter = (dateFormat) => {
+  if (!dateFormat) {
+    // falsy > null, 0, nan, ...
+    dateFormat = dateFormMaker();
+  }
+
   counterMaker(dateFormat);
 
   if (intervalId !== 0) {
@@ -158,6 +167,8 @@ const setClearInterval = () => {
   //   for (let i = 0; i < intervalIdArr.length; i++) {
   //     clearInterval(intervalIdArr[i]);
   //   }
+
+  localStorage.removeItem(dateSaveKey);
 };
 
 const resetTimer = () => {
@@ -165,3 +176,13 @@ const resetTimer = () => {
   resetDateInputs(yearInput, monthInput, dateInput);
   setClearInterval();
 };
+
+///////////////////////////////////////////////////////////////////////////
+
+initiator(messageContainer, container);
+
+resetDateInputs(yearInput, monthInput, dateInput);
+
+if (savedDate) {
+  starter(savedDate);
+}

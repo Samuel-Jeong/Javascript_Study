@@ -21,6 +21,8 @@ const savedWeatherData = JSON.parse(localStorage.getItem(SAVED_WEATHER_KEY));
 // > JavaScript 내부적으로 호이스팅을 수행하기 때문에 참조 에러는 발생하지 않지만 할당 에러가 발생한다.
 // > 호이스팅 : 함수 또는 변수의 선언이 마치 위로 끌어올려진 것처럼 동작하는 것
 // > 그래서 var 변수 선언자를 사용할 경우 Undefined Error 가 발생한다. > 에러를 잡기 힘들다.
+// >>> let, const 도 호이스팅이 발생하지만 TDZ 가 존재하기 때문에 이 지점에서 참조 에러가 발생하게 되므로,
+// >>> 마치 호이스팅이 발생하지 않는 것으로 보인다.
 
 const todoInput = document.querySelector("#todo-input");
 todoInput.addEventListener("keydown", (event) => keyCodeCheck(event));
@@ -202,7 +204,7 @@ const weatherDataActive = ({ location, weather }) => {
   ) {
     localStorage.setItem(
       "saved-weather",
-      JSON.stringify({ location, weather })
+      JSON.stringify({ location, weather }) // 깊은 복사 (새로운 문자열 객체 할당)
     );
   }
 };

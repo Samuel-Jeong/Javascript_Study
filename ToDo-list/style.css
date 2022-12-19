@@ -3,12 +3,24 @@
 }
 
 body {
+  background-image: url("./images/Clear.jpg");
+  background-size: cover;
   background-color: azure;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0;
   min-height: 100vh;
+}
+
+h1 {
+  color: white;
+  text-shadow: 3px 3px gray;
+  opacity: 90%;
+}
+
+input {
+  opacity: 90%;
 }
 
 .todo-container {
@@ -57,4 +69,24 @@ li button {
 /* 버튼이 눌렸을 때 적용하는 속성 */
 li button:active {
   border: 2px solid gray;
+}
+
+.delete-btn-wrapper {
+  margin-top: 1rem;
+}
+
+.delete-btn-wrapper button {
+  font-weight: bold;
+  background-color: antiquewhite;
+  padding: 0.2rem 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 3px 3px gray;
+}
+
+.delete-btn-wrapper button:active {
+  box-shadow: none;
+  margin-left: 3px;
+  margin-top: 3px;
 }

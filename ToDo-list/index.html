@@ -2,14 +2,17 @@
 <html lang="ko">
   <head>
     <link rel="stylesheet" href="style.css" />
-    <script src="./script.js" defer></script>
+    <script type="module" src="./script.js" defer></script>
     <title>ToDo</title>
   </head>
   <body>
-    <h1>ToDo</h1>
+    <h1 id="location-name-tag">ToDo</h1>
     <div class="todo-container">
       <input type="text" id="todo-input" />
       <ul id="todo-list"></ul>
+    </div>
+    <div class="delete-btn-wrapper">
+      <button id="delete-btn">전체 삭제</button>
     </div>
   </body>
 </html>

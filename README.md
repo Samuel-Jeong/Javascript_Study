@@ -14,5 +14,7 @@ Javascript Study
 2) EventListener
 3) 스코프, 호이스팅
 4) 실행 컨텍스트
+
+- 실행을 위해 소스 경로에 [weatherinfo.js] 파일 생성 필요 > API 키 정의
 ~~~
 
